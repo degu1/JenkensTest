@@ -12,7 +12,7 @@ class MainTest {
         System.setOut(new PrintStream(out));
 
         Main.print("hello");
-        assertEquals("hell", out.toString().trim());
+        assertEquals("hej", out.toString().trim());
         System.setOut(standardOut);
     }
 }
