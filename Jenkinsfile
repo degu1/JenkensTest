@@ -3,7 +3,11 @@ pipeline {
     tools {
         maven 'Maven 3.6.3'
     }
-
+    environment {
+        registry = "anishnath/mkdocs"
+        registryCredential = 'docker-creds'
+        dockerImage = ''
+    }
     stages {
         stage('Build') {
             steps {
@@ -19,6 +23,13 @@ pipeline {
         stage('Deploy'){
             steps {
                 sh 'mvn package'
+            }
+        }
+        stage('Building image') {
+            steps{
+                script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                }
             }
         }
     }
