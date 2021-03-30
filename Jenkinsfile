@@ -25,12 +25,6 @@ pipeline {
                 sh 'mvn package'
             }
         }
-        stage('Building image') {
-            steps{
-                script {
-                    dockerImage = docker.build -t jenkintest:1.0
-                }
-            }
-        }
+
     }
 }
